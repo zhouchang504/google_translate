@@ -19,7 +19,45 @@
         $.getScript(googleUrl + "element.js?cb=googleTranslateElementInit");
     });
 </script>
+<script>
+    $(function () {
+        var placeholders = document.querySelectorAll('input[placeholder]');
+        if (placeholders.length) {
+            // convert to array
+            placeholders = Array.prototype.slice.call(placeholders);
+            // copy placeholder text to a hidden div
+            var div = $('<div id="placeholders" style="display:none;"></div>');
+            placeholders.forEach(function(input){
+                var text = input.placeholder;
+                div.append('<div>' + text + '</div>');
+            });
+            $('body').append(div);
+            // save the first placeholder in a closure
+            var originalPH = placeholders[0].placeholder;
+            // check for changes and update as needed
+            setInterval(function(){
+                if (isTranslated()) {
+                    updatePlaceholders();
+                    originalPH = placeholders[0].placeholder;
+                }
+            }, 500);
+            // hoisted ---------------------------
+            function isTranslated() { // true if the text has been translated
+                var currentPH = $($('#placeholders > div')[0]).text();
+                return !(originalPH == currentPH);
+            }
+            function updatePlaceholders() {
+                $('#placeholders > div').each(function(i, div){
+                    placeholders[i].placeholder = $(div).text();
+                });
+            }
+        }
+    })
+</script>
 <style>
+/* 隐藏顶部浮动栏选项  */
+body { position: static !important; top:0px !important; }
+iframe.goog-te-banner-frame { display: none !important; }
 .goog-logo-link { display:none !important; }
 .goog-te-gadget { color: transparent !important; overflow: hidden;}
 .goog-te-balloon-frame{display: none !important;}
@@ -31,7 +69,12 @@
     color: #333;
     border: none;
 }
-</style></head>
+::-webkit-input-placeholder {
+    color: #8f7c85;
+    font-weight: bold;
+}
+</style>
+</head>
 <body>
 <div id="google_translate_element"></div>
 <pre>
@@ -83,5 +126,6 @@
 那里定会有与众不同的生命的涵义
 勇敢者的体验，龟缩者们是否睁开了心灵的眼
 </pre>
+<input name="text" type="text" placeholder="请输入账号密码"/>
 </body>
 </html>
