@@ -59,23 +59,23 @@
     });
     var googtrans = getCookie('googtrans');
     function init_goog(){
-        switch (googtrans){
-            case '/zh-CN/zh-TW':
-                $(document).find('.goog-te-combo option').eq(0).html('選擇語言');
-                break;
-            case '/zh-CN/en':
-                $(document).find('.goog-te-combo option').eq(0).html('Choose a language');
-                break;
-            case '/zh-CN/ms':
-                $(document).find('.goog-te-combo option').eq(0).html('Pilih bahasa');
-                break;
-            case '/zh-CN/vi':
-                $(document).find('.goog-te-combo option').eq(0).html('Chọn ngôn ngữ');
-                break;
-            case '/zh-CN/th':
-                $(document).find('.goog-te-combo option').eq(0).html('เลือกภาษา');
-                break;
-        }
+        // switch (googtrans){
+        //     case '/zh-CN/zh-TW':
+        //         $(document).find('.goog-te-combo option').eq(0).html('選擇語言');
+        //         break;
+        //     case '/zh-CN/en':
+        //         $(document).find('.goog-te-combo option').eq(0).html('Choose a language');
+        //         break;
+        //     case '/zh-CN/ms':
+        //         $(document).find('.goog-te-combo option').eq(0).html('Pilih bahasa');
+        //         break;
+        //     case '/zh-CN/vi':
+        //         $(document).find('.goog-te-combo option').eq(0).html('Chọn ngôn ngữ');
+        //         break;
+        //     case '/zh-CN/th':
+        //         $(document).find('.goog-te-combo option').eq(0).html('เลือกภาษา');
+        //         break;
+        // }
         $(document).find('.goog-te-combo option').eq(1).html('Melayu');
         $(document).find('.goog-te-combo option').eq(2).html('ไทย');
         $(document).find('.goog-te-combo option').eq(3).html('English');
