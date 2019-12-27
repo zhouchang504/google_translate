@@ -1,7 +1,6 @@
 <!DOCTYPE html><head>
 <meta charset="utf-8" />
 <title></title>
-
 <script type="text/javascript" src="google_translate/element.js"></script>
 <script type="text/javascript" src="google_translate/element_main.js"></script>
 <script type="text/javascript" src="google_translate/main_zh-CN.js"></script>
@@ -18,6 +17,7 @@
     $(function () {
         $.getScript(googleUrl + "element.js?cb=googleTranslateElementInit");
     });
+    console.clear();
 </script>
 <script>
     $(function () {
@@ -52,7 +52,44 @@
                 });
             }
         }
-    })
+        $(document).on('change','.goog-te-combo', function() {
+            setTimeout("init_goog()",500);
+        });
+        setTimeout("init_goog()",500);
+    });
+    var googtrans = getCookie('googtrans');
+    function init_goog(){
+        switch (googtrans){
+            case '/zh-CN/zh-TW':
+                $(document).find('.goog-te-combo option').eq(0).html('選擇語言');
+                break;
+            case '/zh-CN/en':
+                $(document).find('.goog-te-combo option').eq(0).html('Choose a language');
+                break;
+            case '/zh-CN/ms':
+                $(document).find('.goog-te-combo option').eq(0).html('Pilih bahasa');
+                break;
+            case '/zh-CN/vi':
+                $(document).find('.goog-te-combo option').eq(0).html('Chọn ngôn ngữ');
+                break;
+            case '/zh-CN/th':
+                $(document).find('.goog-te-combo option').eq(0).html('เลือกภาษา');
+                break;
+        }
+        $(document).find('.goog-te-combo option').eq(1).html('Melayu');
+        $(document).find('.goog-te-combo option').eq(2).html('ไทย');
+        $(document).find('.goog-te-combo option').eq(3).html('English');
+        $(document).find('.goog-te-combo option').eq(4).html('Tiếng việt nam');
+        $(document).find('.goog-te-combo option').eq(5).html('中文（繁體）');
+    }
+    function getCookie(name)
+    {
+        var arr,reg=new RegExp("(^| )"+name+"=([^;]*)(;|$)");
+        if(arr=document.cookie.match(reg))
+            return unescape(arr[2]);
+        else
+            return null;
+    }
 </script>
 <style>
 /* 隐藏顶部浮动栏选项  */
